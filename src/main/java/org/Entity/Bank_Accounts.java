@@ -10,52 +10,54 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-
-@Entity 
-
+@Entity
 public class Bank_Accounts {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int account_id;
 
-	    @ManyToOne 
-	    @JoinColumn(name = "customer_id", nullable = false)
-	    private Customer customer;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int account_id;
 
-		@OneToMany(mappedBy = "bankAccount")
-	    private List<Transactions> transactions;
+	@ManyToOne
+	@JoinColumn(name = "customer_id", nullable = false)
+	private Customer customer;
 
-	    private String account_number;
+	@OneToMany(mappedBy = "bankAccount")
+	private List<Transactions> transactions;
 
-	    private double balance;
+	private String account_number;
 
-	    public Bank_Accounts() {
-	    }
+	private double balance;
 
-	    public Bank_Accounts(Customer customer, String account_number, double balance) {
-	        this.customer = customer;
-	        this.account_number = account_number;
-	        this.balance = balance;
-	    }
+	public Bank_Accounts() {
+	}
 
-	    public int getAccount_id() {
-	        return account_id;
-	    }
+	public Bank_Accounts(Customer customer, String account_number, double balance) {
+		this.customer = customer;
+		this.account_number = account_number;
+		this.balance = balance;
+	}
 
-	    public Customer getCustomer() {
-	        return customer;
-	    }
+	public int getAccount_id() {
+		return account_id;
+	}
 
-		public List<Transactions> getTransactions() {
-	        return transactions;
-	    }
+	public Customer getCustomer() {
+		return customer;
+	}
 
-	    public String getAccount_number() {
-	        return account_number;
-	    }
+	public List<Transactions> getTransactions() {
+		return transactions;
+	}
 
-	    public double getBalance() {
-	        return balance;
-	    }
-	
+	public String getAccount_number() {
+		return account_number;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 }

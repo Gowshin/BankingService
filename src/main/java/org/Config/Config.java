@@ -14,7 +14,7 @@ public class Config {
 	    static {
 	        try {
 	            factory = new Configuration()
-	                    .configure("hibernate.cfg.xml")
+	                    .configure("hibernatepostgres.cfg.xml")
 	                    .addAnnotatedClass(Customer.class)
 	                    .addAnnotatedClass(Bank_Accounts.class)
 	                    .addAnnotatedClass(Transactions.class)
