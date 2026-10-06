@@ -1,0 +1,94 @@
+package org.application;
+
+import java.util.List;
+
+import org.Entity.Bank_Accounts;
+import org.Entity.Transactions;
+import org.hibernate.Session;
+import org.Config.Config;
+
+public class TransactionHistory {
+
+    public void viewTransactionHistory(String accountNumber) {
+
+        Session session = Config
+                .getSessionFactory()
+                .openSession();
+
+        try {
+
+            // Find account using account number
+            Bank_Accounts account = session.createQuery(
+                    "from Bank_Accounts where account_number = :accountNumber",
+                    Bank_Accounts.class
+            )
+            .setParameter("accountNumber", accountNumber)
+            .uniqueResult();
+
+            if (account == null) {
+
+                System.out.println("Account not found.");
+                return;
+            }
+
+            // Find transactions of this account
+            List<Transactions> transactions = session.createQuery(
+                    "from Transactions where bankAccount = :account",
+                    Transactions.class
+            )
+            .setParameter("account", account)
+            .getResultList();
+
+            System.out.println();
+            System.out.println("Transaction History");
+            System.out.println("----------------------------");
+
+            System.out.println(
+                    "Account Number: "
+                    + account.getAccount_number()
+            );
+
+            System.out.println(
+                    "Current Balance: "
+                    + account.getBalance()
+            );
+
+            System.out.println("----------------------------");
+
+            if (transactions.isEmpty()) {
+
+                System.out.println("No transaction history found.");
+                return;
+            }
+
+            for (Transactions transaction : transactions) {
+
+                System.out.println(
+                        "Transaction ID: "
+                        + transaction.getTransaction_id()
+                );
+
+                System.out.println(
+                        "Transaction Type: "
+                        + transaction.getTransaction_type()
+                );
+
+                System.out.println(
+                        "Amount: "
+                        + transaction.getAmount()
+                );
+
+                System.out.println(
+                        "Transaction Time: "
+                        + transaction.getTransaction_timestamp()
+                );
+
+                System.out.println("----------------------------");
+            }
+
+        } finally {
+
+            session.close();
+        }
+    }
+}

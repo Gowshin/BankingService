@@ -1,11 +1,14 @@
 package org.Entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 
 @Entity 
@@ -18,6 +21,9 @@ public class Bank_Accounts {
 	    @ManyToOne 
 	    @JoinColumn(name = "customer_id", nullable = false)
 	    private Customer customer;
+
+		@OneToMany(mappedBy = "bankAccount")
+	    private List<Transactions> transactions;
 
 	    private String account_number;
 
@@ -38,6 +44,10 @@ public class Bank_Accounts {
 
 	    public Customer getCustomer() {
 	        return customer;
+	    }
+
+		public List<Transactions> getTransactions() {
+	        return transactions;
 	    }
 
 	    public String getAccount_number() {
