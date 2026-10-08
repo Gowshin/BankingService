@@ -18,7 +18,7 @@ public class Transactions {
     private int transaction_id;
 
     @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false) 
+    @JoinColumn(name = "account_number", nullable = false) 
     private Bank_Accounts bankAccount;
 
     private String transaction_type;

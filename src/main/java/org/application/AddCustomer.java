@@ -8,7 +8,7 @@ import org.hibernate.Session;
 
 public class AddCustomer {
 
-        public void addnewCustomer(String customerName, String accountNumber, double initialBalance) {
+        public void addnewCustomer(String customerName, double initialBalance) {
 
                 Session session = Config.getSession();
 
@@ -17,7 +17,7 @@ public class AddCustomer {
                 Customer cu = new Customer(customerName);
                 session.persist(cu);
 
-                Bank_Accounts bk = new Bank_Accounts(cu, accountNumber, initialBalance);
+                Bank_Accounts bk = new Bank_Accounts(cu, initialBalance);
                 session.persist(bk);
 
                 Transactions tx = new Transactions(bk, "DEPOSIT", initialBalance);

@@ -18,19 +18,20 @@ public class Main {
 		if (choice == 1) {
 			System.out.print("Enter customer name: ");
 			String customerName = scanner.nextLine();
-			System.out.print("Enter account number: ");
-			String accountNumber = scanner.nextLine();
+
 			System.out.print("Enter initial balance: ");
 			double initialBalance = scanner.nextDouble();
 
 			AddCustomer addCustomer = new AddCustomer();
-			addCustomer.addnewCustomer(customerName, accountNumber, initialBalance);
+			addCustomer.addnewCustomer(customerName, initialBalance);
 
 		}else if (choice == 2) {
 			System.out.print("Enter source account number: ");
 			String fromAccountNumber = scanner.nextLine();
+
 			System.out.print("Enter destination account number: ");
 			String toAccountNumber = scanner.nextLine();
+			
 			System.out.print("Enter amount to transfer: ");
 			double amount = scanner.nextDouble();
 
