@@ -28,7 +28,6 @@ public class Bank_Accounts {
 		@OneToMany(mappedBy = "bankAccount")
 	    private List<Transactions> transactions;
 
-
 	    private double balance;
 
 	    public Bank_Accounts() {
