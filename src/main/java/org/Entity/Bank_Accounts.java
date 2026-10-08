@@ -17,8 +17,8 @@ import jakarta.persistence.OneToMany;
 public class Bank_Accounts {
 
 	    @Id 
-		@GeneratedValue(generator = "custom-id")
-    	@GenericGenerator(name = "custom-id", strategy = "org.Entity.CustomIdGenerator")
+		@GeneratedValue(generator = "account-id-generator")
+		@GenericGenerator(name = "account-id-generator", type = CustomIdGenerator.class)
 	    private String account_number;
 
 	    @ManyToOne 
